@@ -1,25 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.http import HttpResponse
-
-
-class Comic:  # Note that parens are optional if not inheriting from another class
-  def __init__(self, name, writer, artist, issue, description):
-    self.name = name
-    self.writer = writer
-    self.artist = artist
-    self.issue = issue
-    self.description = description
-
-comics = [
-  Comic('SuperDudes', 'Joe Writer', 'Sally Artist', 14, 'it is a good issue'),
-  Comic('SuperLadies', 'Ellen Writer', 'William Artist', 90, 'it is a great issue'),
-  Comic('SuperTeam', 'Bonny Writer', 'Rebecca Artist', 72, 'it is a super issue'),
-]
-
-
-
+from .models import Comic
 
 
 def home(request):
@@ -29,4 +11,9 @@ def about(request):
     return render(request, 'about.html')
 
 def comics_index(request):
-  return render(request, 'comics/index.html', { 'comics': comics })
+    comics = Comic.objects.all()
+    return render(request, 'comics/index.html', { 'comics': comics })
+
+def comics_detail(request, comic_id):
+    comic = Comic.objects.get(id=comic_id)
+    return render(request, 'comics/detail.html', { 'comic': comic })
