@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 
 # Create your views here.
-from .models import Comic
+from .models import Comic, Hero
 from .forms import CoverForm
 
 class ComicCreate(CreateView):
@@ -42,3 +43,21 @@ def add_cover(request, comic_id):
         new_cover.comic_id = comic_id
         new_cover.save()
     return redirect('detail', comic_id=comic_id)
+
+class HeroList(ListView):
+  model = Hero
+
+class HeroDetail(DetailView):
+  model = Hero
+
+class HeroCreate(CreateView):
+  model = Hero
+  fields = '__all__'
+
+class HeroUpdate(UpdateView):
+  model = Hero
+  fields = ['secret_identity', 'powers']
+
+class HeroDelete(DeleteView):
+  model = Hero
+  success_url = '/heroes/'
