@@ -30,8 +30,10 @@ def comics_index(request):
 
 def comics_detail(request, comic_id):
     comic = Comic.objects.get(id=comic_id)
+    heroes_not_on_the_team = Hero.objects.exclude(id__in = comic.heroes.all().values_list('id'))
     cover_form = CoverForm()
-    return render(request, 'comics/detail.html', { 'comic': comic, 'cover_form': cover_form })
+    return render(request, 'comics/detail.html', { 'comic': comic, 'cover_form': cover_form,
+    'heroes':heroes_not_on_the_team })
 
 def add_cover(request, comic_id):
     # create a ModelForm instance using the date in the request.POST
@@ -42,6 +44,10 @@ def add_cover(request, comic_id):
         new_cover = form.save(commit=False)
         new_cover.comic_id = comic_id
         new_cover.save()
+    return redirect('detail', comic_id=comic_id)
+
+def assoc_hero(request, comic_id, hero_id):
+    Comic.objects.get(id=comic_id).heroes.add(hero_id)
     return redirect('detail', comic_id=comic_id)
 
 class HeroList(ListView):

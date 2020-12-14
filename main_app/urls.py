@@ -15,5 +15,6 @@ urlpatterns = [
     path('heroes/create/', views.HeroCreate.as_view(), name='heroes_create'),
     path('heroes/<int:pk>/update/', views.HeroUpdate.as_view(), name='heroes_update'),
     path('heroes/<int:pk>/delete/', views.HeroDelete.as_view(), name='heroes_delete'),
+    path('heroes/<int:comic_id>/assoc_hero/<int:hero_id>/', views.assoc_hero, name='assoc_hero')
 
 ]
