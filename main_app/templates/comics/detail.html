@@ -8,10 +8,10 @@
     <div class="card">
       <div class="card-content">
         <span class="card-title">{{ comic.name }}</span>
-        <p>Issue No: {{ comic.issue }}</p>
-        <p>Writer: {{ comic.writer }}</p>
-        <p>Artist: {{ comic.artist }}</p>
-        <p>Description: {{ comic.description }}</p>
+        <p><span style="font-weight: bold;">Issue No: </span>{{ comic.issue }}</p>
+        <p><span style="font-weight: bold;">Writer: </span>{{ comic.writer }}</p>
+        <p><span style="font-weight: bold;">Artist: </span>{{ comic.artist }}</p>
+        <p><span style="font-weight: bold;">Description: </span>{{ comic.description }}</p>
       </div>
       <div class="card-action">
         <a href="{% url 'comics_update' comic.id %}">Edit</a>

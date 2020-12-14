@@ -8,7 +8,7 @@ from .forms import CoverForm
 
 class ComicCreate(CreateView):
     model = Comic
-    fields = '__all__'
+    fields = ['name', 'issue', 'writer', 'artist', 'description']
 
 class ComicUpdate(UpdateView):
     model = Comic
