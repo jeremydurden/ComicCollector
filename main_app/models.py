@@ -19,6 +19,7 @@ class Comic(models.Model):
     writer = models.CharField('Writer(s)', max_length=100)
     artist = models.CharField('Artist(s)', max_length=100)
     description = models.TextField(max_length=250)
+    heroes = models.ManyToManyField(Hero)
 
     def __str__(self):
         return self.name
