@@ -56,7 +56,7 @@ class HeroCreate(CreateView):
 
 class HeroUpdate(UpdateView):
   model = Hero
-  fields = ['secret_identity', 'powers']
+  fields = ['secret_identity', 'power']
 
 class HeroDelete(DeleteView):
   model = Hero
