@@ -20,6 +20,11 @@
     </div>
   </div>
   <div class="col s6">
+    <form action="{% url 'add_cover' comic.id %}" method="POST">
+      {% csrf_token %}
+      {{ cover_form.as_p }}
+      <input type="submit" class="btn" value="Add a Cover">
+    </form>
     <table class="striped">
       <thead>
         <tr><th>Artist</th><th>Cover</th></tr>
